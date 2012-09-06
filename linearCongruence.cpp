@@ -7,7 +7,7 @@
 #define a 1103515245
 #define c 1
 #define m 2147483648
-#define SEARCH 122
+#define SEARCH 386
 
 // multiply the last number with a factor 'a' add constant 'c' then modulate by 'm'
 
@@ -112,6 +112,42 @@ int comparrisons;
 int high= 100, low = 0, counter = 0;
 
 	((comparrisons = binarySearch(myarray, &high, &low, SEARCH, &counter) == -1? printf("Binary -> Search term not found\n"): printf("Binary -> Number of comparrisons to find search term: %d\n",counter)));
+
+
+/*	through our great a glorious knowledge of the seed :-)
+	these numbers will be used to run question 5 esentially counting the number of comparrisons for sequential search and binary search 10 times.
+	the numbers will be the first 10 numbers from the random unsorted list and the searches will be performed on the sorted list.
+
+	125
+	122
+	83
+	200
+	249
+	374
+	351
+	212
+	261
+	386
+
+*/
+	int testvalues[] = {122,83,200,249,374,351,212,261,386,125};
+	int binaryComparisons[10];
+	int sequentialComparisons[10];
+
+	if (file = fopen("Comparisons.txt", "w"))
+{
+	for(int i = 0; i < 10; i++)
+	{
+		counter = 0;
+		high = 100;
+		low = 0;
+		sequentialComparisons[i] = sequentialSearch(myarray, size, testvalues[i]);
+		binaryComparisons[i] = binarySearch(myarray, &high, &low, testvalues[i], &counter);
+		fprintf(file,"seq: %d     bin: %d\n", sequentialComparisons[i], counter);
+	}
+} else{
+	printf("Output file failed to open");
+}
 
 	return 0;
 }
